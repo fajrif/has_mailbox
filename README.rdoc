@@ -1,0 +1,95 @@
+= has_mailbox
+
+If you like to add messaging functionality between the users in your rails app, use this gem!
+this gem also provide standard mailbox/messagebox interface allowing each users have their own inbox, outbox and trash.
+
+This rails engine compatible with Rails 3.x only.
+
+== Setup
+
+add the gem to your Gemfile.
+
+  gem "has_mailbox"
+
+run bundle command and generate the migration files, this will generate messages table and messagecopies table,
+after that don't forget to run the migration.
+
+  rails g has_mailbox:migration
+  rake db:migrate
+
+Then add has_mailbox method in your user model, for example :
+
+  class User < ActiveRecord::Base
+     has_mailbox
+     ...
+  end
+
+Until this step you are able to send messages between the users across your application.
+Try to create two user object and send messages to one user with another, 
+and list all messages from the entire mailbox.
+
+  @user1 = User.first  # => create first user
+  @user2 = User.last   # => return the second user
+  
+  @user1.send_message("Hi Subject","Hi Body !!!",@user2)   # => send message to @user2
+  @user1.send_message?("Hi Subject","Hi Body !!!",@user2)  # => send message with true/false return
+  @user1.send_message("Hi Subject","Hi Body !!!",@user2,@user3)  # => send message with with multiple recipients
+  
+  @user1.inbox   # => return all incoming messages for @user1
+  @user1.outbox  # => return outgoing messages for @user1
+  @user1.trash   # => return all messages that has been deleted
+  
+If you like to delete the message from user object, and empty the box try use this method.
+
+  @message = @user1.inbox.find(1) # => get message from inbox with id 1
+  @message.delete                 # => delete message from inbox will be moved to trash box.
+
+  @user1.trash                    # => return deleted messages
+  
+  @message = @user.trash.find(1)  # => get the current deleted message
+  
+  @message.undelete               # => will return the message to inbox
+  or
+  @message.delete                 # => will delete message permanently
+  
+  @user.empty_mailbox(:inbox => true)  # => will delete all messages from inbox to trash.
+  @user.empty_mailbox(:outbox => true) # => will delete all outgoing messages permanently.
+  @user.empty_mailbox(:inbox => true)  # => will delete all messages from trash permanently.
+
+Each user are able to mark their message as read/unread. Example :
+
+  @user1.inbox.find(1).mark_as_read    # update attribute message opened to true
+  @user1.inbox.find(1).mark_as_unread  # to false
+
+== Install Mailbox Views
+This gem has been build using Devise authentication, but if you like using another authentication plugin,
+such as authlogic / restful-authentication or any other authentication plugins, it still suits to your app.
+
+   rails g has_mailbox:install [user_attribute_name]
+
+this generator will install to your application the views and stylesheet file in your public directory,
+notice the required argument "user_attribute_name", you have to fill this with desired attribute name in your user model
+you wish to display in your generated views. e.g. : email, username, first_name, etc.
+the default will be set to "email", cause Devise default user login using "email" attribute.
+
+here's the tricky part. you have to define the route for mailboxes in order to get controller will work with your views.
+Also you have to specifies the current user object from your authentication plugin and also the attribute name you wish to display.
+
+with Devise authentication to get the default user object that is currently sign in is "current_user" 
+and the display attribute using "email".
+So in your config/routes.rb, please add mailboxes_for method. Example : 
+
+   mailboxes_for :users    # => with this argument user_object_name 
+                           # => will set to "current_user" and 
+                           # => user_attribute_name will set to "email"
+
+or if you using different plugins/gems, you can set with your own user_object_name and user_attribute_name
+  
+   mailboxes_for :users, :user_object_name => "current_user_sign_in", :user_attribute_name => "username"
+
+
+== Your issues are needed
+
+This is gem are still under development mode, so if you are having some problems with has_mailbox, please submit an issues here.
+
+http://github.com/fajrif/has_mailbox/issues

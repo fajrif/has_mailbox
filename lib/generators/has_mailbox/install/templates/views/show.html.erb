@@ -1,0 +1,35 @@
+<h2>Mailbox</h2>
+
+<%= render "head" %>
+
+<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	<%= render :partial => "tabs_panel" %>
+    <div id="tabs-messages" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+		<%= form_tag create_mailboxes_path, :method => :post do %>
+			<h3><%= @message.subject %></h3>
+			<div class="message ui-widget-content ui-corner-all">
+				<h5><%= raw @message_description %></h5>	
+				<p><%= @message.body %></p>
+			</div>
+		<% unless params[:mailbox] == "outbox" %>
+			<p>
+			    <%= label_tag :body, "Reply Message :" %><br />
+				<%= text_area_tag :body, "", :class => "medium" %>
+			</p>
+			<p>
+				<%= submit_tag "Reply", :class => "submit" %>
+			</p>
+			<%= hidden_field_tag :user_tokens, @user_tokens %>
+			<%= hidden_field_tag :subject, @message.subject %>
+		<% end -%>
+		<% end -%>
+    </div>   
+</div>
+
+
+
+
+
+
+
+

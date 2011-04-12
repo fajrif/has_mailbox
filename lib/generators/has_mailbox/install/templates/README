@@ -1,0 +1,26 @@
+
+*****************************************************************************************
+
+Some setup you must do manually if you haven't yet:
+
+  1. Ensure the has_mailbox method has been defined your user model.
+     	
+  		class User < ActiveRecord::Base
+  			has_mailbox
+  			...
+  		end
+
+  2. Ensure you have defined mailboxes route to your config/routes.rb.
+     For example:
+
+       mailboxes_for :users
+         or
+       mailboxes_for :users, :user_object_name => "current_user", :user_display_attribute => "email"
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+       
+*****************************************************************************************
