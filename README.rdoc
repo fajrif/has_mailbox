@@ -65,7 +65,7 @@ Each user are able to mark their message as read/unread. Example :
 This gem has been build using Devise authentication, but if you like using another authentication plugin,
 such as authlogic / restful-authentication or any other authentication plugins, it still suits to your app.
 
-   rails g has_mailbox:install [user_attribute_name]
+   rails g has_mailbox:install
 
 this generator will install to your application the views and stylesheet file in your public directory,
 notice the required argument "user_attribute_name", you have to fill this with desired attribute name in your user model
