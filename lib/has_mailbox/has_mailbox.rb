@@ -21,6 +21,9 @@ module HasMailbox
     end
 
     module InstanceMethods
+      def has_unread_messages?
+        inbox.exists?(:opened => false)
+      end
       
       # send message instance method
       def send_message?(subject, body, *recipients)
