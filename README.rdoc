@@ -24,7 +24,7 @@ Then add has_mailbox method in your user model, for example :
      ...
   end
 
-Until this step you are able to send messages between the users across your application.
+After this step you will be able to send messages between the users across your application.
 Try to create two user object and send messages to one user with another, 
 and list all messages from the entire mailbox.
 
