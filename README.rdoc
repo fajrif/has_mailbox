@@ -24,7 +24,7 @@ Then add has_mailbox method in your user model, for example :
      ...
   end
 
-Until this step you are able to send messages between the users across your application.
+After this step you will be able to send messages between the users across your application.
 Try to create two user object and send messages to one user with another, 
 and list all messages from the entire mailbox.
 
@@ -90,6 +90,6 @@ or if you using different plugins/gems, you can set with your own user_object_na
 
 == Your issues are needed
 
-This is gem are still under development mode, so if you are having some problems with has_mailbox, please submit an issues here.
+This gem is still under development mode, so if you are having some problems with has_mailbox, please submit an issues here.
 
 http://github.com/fajrif/has_mailbox/issues
