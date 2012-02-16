@@ -13,10 +13,10 @@ Gem::Specification.new do |s|
   s.description = %q{This gem allowing each user to send and receive private messages}
 
   s.rubyforge_project = "has_mailbox"
-  
+
   s.add_runtime_dependency "jquery-rails"
   s.add_runtime_dependency "will_paginate"
-  
+
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }

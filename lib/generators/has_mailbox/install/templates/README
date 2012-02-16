@@ -4,7 +4,7 @@
 Some setup you must do manually if you haven't yet:
 
   1. Ensure the has_mailbox method has been defined your user model.
-     	
+
   		class User < ActiveRecord::Base
   			has_mailbox
   			...
@@ -22,5 +22,5 @@ Some setup you must do manually if you haven't yet:
 
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
-       
+
 *****************************************************************************************
