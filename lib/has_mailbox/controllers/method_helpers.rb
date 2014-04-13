@@ -102,6 +102,10 @@ module HasMailbox
                 end	
               end
             end
+            
+            def message_params
+              params.permit(:body, :subject, :mailbox, :page, :id, :user_tokens, :messages, :q, :sent_messageable_type, :sent_messageable_id, :recipient_id, :received_messageable_type, :received_messageable_id, :sender_id, :subject, :body, :opened, :deleted)
+            end
 
             METHODS
 

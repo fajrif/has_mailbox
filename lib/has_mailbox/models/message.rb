@@ -3,14 +3,6 @@ module HasMailbox
     class Message < ::ActiveRecord::Base
       belongs_to :received_messageable, :polymorphic => true
 
-      attr_accessible :received_messageable_type,
-        :received_messageable_id,
-        :sender_id,
-        :subject,
-        :body,
-        :opened,
-        :deleted
-
       validates_presence_of :sender_id, :subject, :body
 
       default_scope order('created_at desc')
