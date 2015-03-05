@@ -7,7 +7,7 @@ require 'has_mailbox/models/message'
 require 'has_mailbox/models/message_copies'
 require 'has_mailbox/controllers/method_helpers'
 require 'has_mailbox/mailboxes/routing'
-require 'has_mailbox/mailboxes/engine' if defined?(Rails) && Rails::VERSION::MAJOR == 3
+require 'has_mailbox/mailboxes/engine' if defined?(Rails) && Rails::VERSION::MAJOR > 3
 
 $LOAD_PATH.shift
 
