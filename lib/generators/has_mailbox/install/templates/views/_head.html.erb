@@ -7,11 +7,11 @@
     <%= javascript_include_tag "jquery.tokeninput" %>
     <script type="text/javascript">
 
-      $(document).ready(function() {
+      $(function() {
           $("#user_tokens").tokenInput("/mailbox/token.json", {
             crossDomain: false,
             theme: "facebook"
-            });
+          });
       });
 
     </script>

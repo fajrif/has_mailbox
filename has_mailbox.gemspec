@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "has_mailbox"
 
-  s.add_runtime_dependency "jquery-rails"
+  s.add_runtime_dependency "jquery-rails", '>= 3.1.0'
   s.add_runtime_dependency "will_paginate"
 
   s.files         = `git ls-files`.split("\n")
